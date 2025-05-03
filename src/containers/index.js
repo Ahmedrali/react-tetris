@@ -90,10 +90,10 @@ class App extends React.Component {
     return (
       <div
         // Apply the dynamic theme class alongside existing ones
-        className={classnames(
-          style.app,
-          themeClassName, // Moved to new line
-        )}
+        className={classnames( // Ensure opening parenthesis is correct
+          style.app,          // First argument
+          themeClassName,     // Second argument
+        )}                    // Ensure closing parenthesis is correct
         style={size}
       >
         <div className={classnames({ [style.rect]: true, [style.drop]: this.props.drop })}>
