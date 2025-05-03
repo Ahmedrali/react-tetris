@@ -1,0 +1,20 @@
+/* src/themes/dark.css */
+.theme-dark {
+  --app-bg-color: #282c34; /* Dark grey-blue */
+  --panel-bg-color: #21252b; /* Slightly darker */
+  --matrix-bg-color: #3a3f4b; /* Medium dark */
+  --primary-text-color: #abb2bf; /* Light grey */
+  --secondary-text-color: #ffffff; /* White */
+  --panel-border-color: #abb2bf;
+
+  /* Muted Block Colors */
+  --block-color-i: #61afef; /* Muted Blue */
+  --block-color-o: #e5c07b; /* Muted Yellow */
+  --block-color-t: #c678dd; /* Muted Purple */
+  --block-color-s: #98c379; /* Muted Green */
+  --block-color-z: #e06c75; /* Muted Red */
+  --block-color-j: #56b6c2; /* Muted Cyan */
+  --block-color-l: #d19a66; /* Muted Orange */
+  --block-color-locked: #4b5263; /* Darker grey when locked */
+  --block-color-empty: #2f343d;
+}

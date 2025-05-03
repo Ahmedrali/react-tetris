@@ -1,0 +1,20 @@
+/* Defines default variables. Theme files will override these. */
+:root {
+  --app-bg-color: #f0f0f0; /* Light grey */
+  --panel-bg-color: #dcdcdc; /* Slightly darker grey */
+  --matrix-bg-color: #ffffff; /* White */
+  --primary-text-color: #333333; /* Dark grey */
+  --secondary-text-color: #000000; /* Black */
+  --panel-border-color: #000000; /* Black */
+
+  /* Default Block Colors (Example: Grayscale) */
+  --block-color-i: #aaaaaa;
+  --block-color-o: #bbbbbb;
+  --block-color-t: #cccccc;
+  --block-color-s: #dddddd;
+  --block-color-z: #eeeeee;
+  --block-color-j: #999999;
+  --block-color-l: #888888;
+  --block-color-locked: #777777; /* Color for blocks in the matrix */
+  --block-color-empty: #f8f8f8; /* Color for empty cells in matrix */
+}

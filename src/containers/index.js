@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import propTypes from 'prop-types';
 
 import style from './index.less';
+import '../themes/base.css'; // <-- Import base theme CSS
 
 import Matrix from '../components/matrix';
 import Decorate from '../components/decorate';
@@ -82,9 +83,14 @@ class App extends React.Component {
       return css;
     })();
 
+    // Get theme from props
+    const { theme } = this.props;
+    const themeClassName = `theme-${theme || 'classic'}`; // Ensure default if theme is somehow undefined initially
+
     return (
       <div
-        className={style.app}
+        // Apply the dynamic theme class alongside existing ones
+        className={classnames(style.app, themeClassName)}
         style={size}
       >
         <div className={classnames({ [style.rect]: true, [style.drop]: this.props.drop })}>
@@ -140,6 +146,7 @@ App.propTypes = {
   reset: propTypes.bool.isRequired,
   drop: propTypes.bool.isRequired,
   keyboard: propTypes.object.isRequired,
+  theme: propTypes.string.isRequired, // <-- Add theme propType
 };
 
 const mapStateToProps = (state) => ({
@@ -157,6 +164,11 @@ const mapStateToProps = (state) => ({
   reset: state.get('reset'),
   drop: state.get('drop'),
   keyboard: state.get('keyboard'),
+  // Map theme state to props - Adjust if root state is not Immutable Map
+  // If root state IS an Immutable Map: theme: state.get('theme'),
+  // If root state is plain JS object: theme: state.theme,
+  // Assuming root state IS an Immutable Map based on other mappings:
+  theme: state.get('theme'),
 });
 
 export default connect(mapStateToProps)(App);

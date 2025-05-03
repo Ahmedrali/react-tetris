@@ -1,0 +1,20 @@
+/* src/themes/classic.css */
+.theme-classic {
+  --app-bg-color: #e0e0e0;
+  --panel-bg-color: #c0c0c0;
+  --matrix-bg-color: #fafafa;
+  --primary-text-color: #111111;
+  --secondary-text-color: #000000;
+  --panel-border-color: #000000;
+
+  /* Classic Tetris Colors (Approximate) */
+  --block-color-i: #00ffff; /* Cyan */
+  --block-color-o: #ffff00; /* Yellow */
+  --block-color-t: #aa00ff; /* Purple */
+  --block-color-s: #00ff00; /* Green */
+  --block-color-z: #ff0000; /* Red */
+  --block-color-j: #0000ff; /* Blue */
+  --block-color-l: #ffaa00; /* Orange */
+  --block-color-locked: inherit; /* Use the original color when locked */
+  --block-color-empty: #f0f0f0;
+}
