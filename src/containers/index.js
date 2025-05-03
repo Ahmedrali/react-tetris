@@ -90,10 +90,15 @@ class App extends React.Component {
     return (
       <div
         // Apply the dynamic theme class alongside existing ones
-        className={classnames(style.app, themeClassName )}
+        className={classnames(style.app, themeClassName)}
         style={size}
       >
-        <div className={classnames({ [style.rect]: true, [style.drop]: this.props.drop })}>
+        <div
+          className={classnames({
+            [style.rect]: true,
+            [style.drop]: this.props.drop,
+          })}
+        >
           <Decorate />
           <div className={style.screen}>
             <div className={style.panel}>
