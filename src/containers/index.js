@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import propTypes from 'prop-types';
 
 import style from './index.less';
-import '../themes/base.css'; // <-- Import base theme CSS
+// Removed: import '../themes/base.css';
 
 import Matrix from '../components/matrix';
 import Decorate from '../components/decorate';
@@ -90,7 +90,10 @@ class App extends React.Component {
     return (
       <div
         // Apply the dynamic theme class alongside existing ones
-        className={classnames(style.app, themeClassName)}
+        className={classnames(
+          style.app,
+          themeClassName, // Moved to new line
+        )}
         style={size}
       >
         <div className={classnames({ [style.rect]: true, [style.drop]: this.props.drop })}>

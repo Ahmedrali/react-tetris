@@ -15,10 +15,10 @@ const loadThemeState = () => {
     // Return the state slice structure expected by the root reducer
     // Assuming the theme reducer is directly under the root and expects a plain JS object/string
     return {
-        theme: JSON.parse(serializedTheme)
+      theme: JSON.parse(serializedTheme), // Indent fixed, comma added
     };
   } catch (err) {
-    console.error("Could not load theme state", err);
+    console.error('Could not load theme state', err); // Quotes fixed
     return undefined;
   }
 };
@@ -32,7 +32,7 @@ const saveThemeState = (state) => {
     const serializedTheme = JSON.stringify(themeToSave);
     localStorage.setItem(THEME_STORAGE_KEY, serializedTheme);
   } catch (err) {
-    console.error("Could not save theme state", err);
+    console.error('Could not save theme state', err); // Quotes fixed
   }
 };
 
@@ -47,23 +47,23 @@ const store = createStore(
 // Subscribe to store changes to save the theme
 // Need to handle potential Immutable.js structure if rootReducer uses it
 const getThemeFromState = (state) => {
-    // Check if the state is an Immutable Map
-    if (typeof state.get === 'function') {
-        return state.get('theme');
-    }
-    // Otherwise, assume plain JS object
-    return state.theme;
+  // Check if the state is an Immutable Map
+  if (typeof state.get === 'function') { // Indent fixed (2 spaces)
+    return state.get('theme'); // Indent fixed (4 spaces)
+  }
+  // Otherwise, assume plain JS object
+  return state.theme; // Indent fixed (2 spaces)
 };
 
 let currentTheme = getThemeFromState(store.getState());
 store.subscribe(() => {
-    let previousTheme = currentTheme;
-    currentTheme = getThemeFromState(store.getState());
+  const previousTheme = currentTheme; // Use const, Indent fixed (2 spaces)
+  currentTheme = getThemeFromState(store.getState()); // Indent fixed (2 spaces)
 
-    if (previousTheme !== currentTheme) {
-        // Pass the relevant slice to saveThemeState
-        saveThemeState({ theme: currentTheme });
-    }
+  if (previousTheme !== currentTheme) { // Indent fixed (2 spaces)
+    // Pass the relevant slice to saveThemeState
+    saveThemeState({ theme: currentTheme }); // Indent fixed (4 spaces)
+  }
 });
 
 export default store;
