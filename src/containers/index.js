@@ -46,9 +46,8 @@ class App extends React.Component {
           marginTop: Math.floor(-480 - (filling * 1.5)),
         };
       }
-      css[transform] = `scale(${scale})`;
-      // return css; // Temporarily disable dynamic scaling
-      return {}; // Apply no dynamic scaling styles
+      // css[transform] = `scale(${scale})`; // Keep scale transform commented out
+      return css; // Return the calculated CSS for padding/margin/centering
     })();
 
     const theme = this.props.theme;
