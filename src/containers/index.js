@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import style from './index.less';
 
+// Import theme CSS files directly
+import '../themes/base.css';
+import '../themes/classic.css';
+import '../themes/neon.css';
+import '../themes/dark.css';
+
 import Matrix from '../components/matrix';
 import Decorate from '../components/decorate';
 import Number from '../components/number';

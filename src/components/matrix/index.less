@@ -1,9 +1,28 @@
 .matrix{
   border: 2px solid var(--panel-border-color);
+  background-color: var(--matrix-bg-color); /* Use variable */
   padding: 3px 1px 1px 3px;
   width: 228px;
   p{
     width: 220px;
     height: 22px;
+    /* Style for individual cells within the matrix */
+    b {
+      border-color: transparent; /* Remove default border if any */
+      &:after {
+        background-color: var(--block-color-empty); /* Empty cell color */
+      }
+      /* Block type colors - Apply variables */
+      &.b_0 { &:after { background-color: var(--block-color-empty); } } /* Empty */
+      &.b_1 { &:after { background-color: var(--block-color-locked); } } /* Locked/Gray */
+      &.b_2 { &:after { background-color: var(--block-color-i); } } /* I */
+      &.b_3 { &:after { background-color: var(--block-color-l); } } /* L */
+      &.b_4 { &:after { background-color: var(--block-color-j); } } /* J */
+      &.b_5 { &:after { background-color: var(--block-color-z); } } /* Z */
+      &.b_6 { &:after { background-color: var(--block-color-s); } } /* S */
+      &.b_7 { &:after { background-color: var(--block-color-o); } } /* O */
+      &.b_8 { &:after { background-color: var(--block-color-t); } } /* T */
+      /* Add any other specific block styles if needed */
+    }
   }
 }
