@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var TerserWebpackPlugin = require('terser-webpack-plugin');
 var version = require('./package.json').version;
 
 
@@ -83,11 +84,25 @@ var productionPlugins = [
     template: __dirname + '/server/index.tmpl.html'
   }),
   // JS压缩
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }}
-  ),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //     warnings: false
+  //   }}
+  // ),
+  // Add the TerserWebpackPlugin instance instead                                                                           
+  new TerserWebpackPlugin({                                                                                                 
+    // Default options are usually sufficient for ES6+ compatibility.                                                       
+    // You can customize options here if needed, for example:                                                               
+    // terserOptions: {                                                                                                     
+    //   format: {                                                                                                          
+    //     comments: false, // Remove comments                                                                              
+    //   },                                                                                                                 
+    //   compress: {                                                                                                        
+    //     drop_console: true, // Remove console logs in production                                                         
+    //   },                                                                                                                 
+    // },                                                                                                                   
+    // extractComments: false, // Do not extract comments to a separate file                                                
+  }),  
   // css打包
   new ExtractTextPlugin('css-' + version + '.css', {
     allChunks: true
