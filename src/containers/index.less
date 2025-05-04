@@ -65,10 +65,11 @@ body{
         display: block;
         width: 12px;
         height: 12px;
-        background: #879372;
+        /* background: #879372; */ /* Let matrix.less handle block backgrounds */
+        background: transparent; /* Use transparent globally */
         overflow: hidden;
       }
-      &.c {
+      &.c { /* This class seems to be applied for active blocks? Revisit if needed */
         border-color: #000;
         &:after {
           background: #000;
@@ -99,16 +100,19 @@ body{
   width: 390px;
   height: 478px;
   border: solid 5px;
-  border-color: #987f0f #fae36c #fae36c #987f0f;
+  /* border-color: #987f0f #fae36c #fae36c #987f0f; */ /* Use theme variable */
+  border: solid 5px var(--panel-border-color); /* Apply theme border */
   margin: 0 auto;
   position: relative;
   .panel{
     width: 380px;
     height: 468px;
     margin: 0 auto;
-    background: #9ead86;
+    /* background: #9ead86; */ /* Use theme variable */
+    background-color: var(--panel-bg-color); /* Apply theme background */
     padding: 8px;
-    border: 2px solid #494536;
+    /* border: 2px solid #494536; */ /* Panel border seems less important, remove or theme if needed */
+    border: none; /* Removing inner border for simplicity for now */
   }
 }
 
@@ -123,6 +127,7 @@ body{
     padding: 10px 0 0;
     white-space: nowrap;
     clear: both;
+    color: var(--primary-text-color); /* Apply theme text color */
   }
   .bottom {
     position: absolute;

@@ -47,7 +47,8 @@ class App extends React.Component {
         };
       }
       css[transform] = `scale(${scale})`;
-      return css;
+      // return css; // Temporarily disable dynamic scaling
+      return {}; // Apply no dynamic scaling styles
     })();
 
     const theme = this.props.theme;
