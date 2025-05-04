@@ -16,9 +16,9 @@ import Keyboard from '../components/keyboard';
 import Guide from '../components/guide';
 import ThemeSelector from '../components/ThemeSelector';
 
-import { transform, lastRecord, speeds, i18n, lan } from '../unit/const';
-import { visibilityChangeEvent, isFocus } from '../unit/';
-import states from '../control/states';
+import { transform, i18n, lan } from '../unit/const';
+// import { visibilityChangeEvent, isFocus } from '../unit/'; // Removed unused imports
+// import states from '../control/states'; // Removed unused import
 
 class App extends React.Component {
   render() {

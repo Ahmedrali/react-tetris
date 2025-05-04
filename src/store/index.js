@@ -11,10 +11,10 @@ const loadThemeState = () => {
       return Map();
     }
     return Map({
-      theme: JSON.parse(serializedTheme)
+      theme: JSON.parse(serializedTheme), // Added trailing comma
     });
   } catch (err) {
-    console.error('Could not load theme state', err);
+    // console.error('Could not load theme state', err); // Removed console.error
     return Map();
   }
 };
@@ -25,7 +25,7 @@ const saveThemeState = (state) => {
     const serializedTheme = JSON.stringify(themeToSave);
     localStorage.setItem(THEME_STORAGE_KEY, serializedTheme);
   } catch (err) {
-    console.error('Could not save theme state', err);
+    // console.error('Could not save theme state', err); // Removed console.error
   }
 };
 
