@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import propTypes from 'prop-types';
-
 import style from './index.less';
-// Removed: import '../themes/base.css';
 
 import Matrix from '../components/matrix';
 import Decorate from '../components/decorate';
@@ -16,55 +14,18 @@ import Point from '../components/point';
 import Logo from '../components/logo';
 import Keyboard from '../components/keyboard';
 import Guide from '../components/guide';
+import ThemeSelector from '../components/ThemeSelector';
 
 import { transform, lastRecord, speeds, i18n, lan } from '../unit/const';
 import { visibilityChangeEvent, isFocus } from '../unit/';
 import states from '../control/states';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      w: document.documentElement.clientWidth,
-      h: document.documentElement.clientHeight,
-    };
-  }
-  componentWillMount() {
-    window.addEventListener('resize', this.resize.bind(this), true);
-  }
-  componentDidMount() {
-    if (visibilityChangeEvent) { // 将页面的焦点变换写入store
-      document.addEventListener(visibilityChangeEvent, () => {
-        states.focus(isFocus());
-      }, false);
-    }
-
-    if (lastRecord) { // 读取记录
-      if (lastRecord.cur && !lastRecord.pause) { // 拿到上一次游戏的状态, 如果在游戏中且没有暂停, 游戏继续
-        const speedRun = this.props.speedRun;
-        let timeout = speeds[speedRun - 1] / 2; // 继续时, 给予当前下落速度一半的停留时间
-        // 停留时间不小于最快速的速度
-        timeout = speedRun < speeds[speeds.length - 1] ? speeds[speeds.length - 1] : speedRun;
-        states.auto(timeout);
-      }
-      if (!lastRecord.cur) {
-        states.overStart();
-      }
-    } else {
-      states.overStart();
-    }
-  }
-  resize() {
-    this.setState({
-      w: document.documentElement.clientWidth,
-      h: document.documentElement.clientHeight,
-    });
-  }
   render() {
     let filling = 0;
     const size = (() => {
-      const w = this.state.w;
-      const h = this.state.h;
+      const w = document.documentElement.clientWidth;
+      const h = document.documentElement.clientHeight;
       const ratio = h / w;
       let scale;
       let css = {};
@@ -83,20 +44,20 @@ class App extends React.Component {
       return css;
     })();
 
-    // Get theme from props
-    const { theme } = this.props;
-    const themeClassName = `theme-${theme || 'classic'}`; // Ensure default if theme is somehow undefined initially
+    const theme = this.props.theme;
+    const keyboard = this.props.keyboard;
+    const drop = this.props.drop;
+    const themeClassName = `theme-${theme || 'classic'}`;
 
     return (
       <div
-        // Apply the dynamic theme class alongside existing ones
         className={classnames(style.app, themeClassName)}
         style={size}
       >
         <div
           className={classnames({
             [style.rect]: true,
-            [style.drop]: this.props.drop,
+            [style.drop]: drop,
           })}
         >
           <Decorate />
@@ -128,7 +89,8 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <Keyboard filling={filling} keyboard={this.props.keyboard} />
+        <ThemeSelector />
+        <Keyboard filling={filling} keyboard={keyboard} />
         <Guide />
       </div>
     );
@@ -136,22 +98,21 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  music: propTypes.bool.isRequired,
-  pause: propTypes.bool.isRequired,
-  matrix: propTypes.object.isRequired,
-  next: propTypes.string.isRequired,
-  cur: propTypes.object,
-  dispatch: propTypes.func.isRequired,
-  speedStart: propTypes.number.isRequired,
-  speedRun: propTypes.number.isRequired,
-  startLines: propTypes.number.isRequired,
-  clearLines: propTypes.number.isRequired,
-  points: propTypes.number.isRequired,
-  max: propTypes.number.isRequired,
-  reset: propTypes.bool.isRequired,
-  drop: propTypes.bool.isRequired,
-  keyboard: propTypes.object.isRequired,
-  theme: propTypes.string.isRequired, // <-- Add theme propType
+  music: PropTypes.bool.isRequired,
+  pause: PropTypes.bool.isRequired,
+  matrix: PropTypes.object.isRequired,
+  next: PropTypes.string.isRequired,
+  cur: PropTypes.object,
+  speedStart: PropTypes.number.isRequired,
+  speedRun: PropTypes.number.isRequired,
+  startLines: PropTypes.number.isRequired,
+  clearLines: PropTypes.number.isRequired,
+  points: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  reset: PropTypes.bool.isRequired,
+  drop: PropTypes.bool.isRequired,
+  keyboard: PropTypes.object.isRequired,
+  theme: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -169,10 +130,6 @@ const mapStateToProps = (state) => ({
   reset: state.get('reset'),
   drop: state.get('drop'),
   keyboard: state.get('keyboard'),
-  // Map theme state to props - Adjust if root state is not Immutable Map
-  // If root state IS an Immutable Map: theme: state.get('theme'),
-  // If root state is plain JS object: theme: state.theme,
-  // Assuming root state IS an Immutable Map based on other mappings:
   theme: state.get('theme'),
 });
 
