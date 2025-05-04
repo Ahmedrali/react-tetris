@@ -45,6 +45,10 @@ var loaders = [
     {
       test: /\.less/,
       loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[hash:base64:4]!postcss!less'),
+    },
+    {
+      test: /\.css$/, // Add this rule for plain CSS files
+      loader: ExtractTextPlugin.extract('style', 'css'), // Use css-loader without modules
     }
 ];
 
