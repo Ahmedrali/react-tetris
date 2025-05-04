@@ -1,8 +1,8 @@
-body{
-  /* background: #009688; <- Removed: Let app background control this */
-  padding: 0;margin:0;
+body {
+  /* background: #009688; */
+  padding: 0;
+  margin: 0;
   font: 20px/1 "HanHei SC", "PingHei", "PingFang SC", "STHeitiSC-Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  overflow: hidden;
   cursor: default;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@ body{
   top: 50%;
   left: 50%;
   margin: -480px 0 0 -320px;
-  background-color: var(--app-bg-color); /* Use background-color */
+  background-color: var(--app-bg-color);
   :global{
     b {
       display: block;
@@ -65,11 +65,10 @@ body{
         display: block;
         width: 12px;
         height: 12px;
-        /* background: #879372; */ /* Let matrix.less handle block backgrounds */
-        background: transparent; /* Use transparent globally */
+        background: transparent;
         overflow: hidden;
       }
-      &.c { /* This class seems to be applied for active blocks? Revisit if needed */
+      &.c {
         border-color: #000;
         &:after {
           background: #000;
@@ -99,20 +98,16 @@ body{
 .screen{
   width: 390px;
   height: 478px;
-  border: solid 5px;
-  /* border-color: #987f0f #fae36c #fae36c #987f0f; */ /* Use theme variable */
-  border: solid 5px var(--panel-border-color); /* Apply theme border */
+  border: solid 5px var(--panel-border-color);
   margin: 0 auto;
   position: relative;
   .panel{
     width: 380px;
     height: 468px;
     margin: 0 auto;
-    /* background: #9ead86; */ /* Use theme variable */
-    background-color: var(--panel-bg-color); /* Apply theme background */
+    background-color: var(--panel-bg-color);
     padding: 8px;
-    /* border: 2px solid #494536; */ /* Panel border seems less important, remove or theme if needed */
-    border: none; /* Removing inner border for simplicity for now */
+    border: none;
   }
 }
 
@@ -127,7 +122,7 @@ body{
     padding: 10px 0 0;
     white-space: nowrap;
     clear: both;
-    color: var(--primary-text-color); /* Apply theme text color */
+    color: var(--primary-text-color);
   }
   .bottom {
     position: absolute;
@@ -136,5 +131,3 @@ body{
     left: 0;
   }
 }
-
-/* Removed theme imports from here */

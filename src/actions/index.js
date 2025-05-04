@@ -108,11 +108,10 @@ function focus(data) {
   };
 }
 
-// Add this function
 function setTheme(themeName) {
   return {
     type: reducerType.SET_THEME,
-    data: themeName, // e.g., 'classic', 'neon', 'dark'
+    data: themeName,
   };
 }
 
@@ -133,5 +132,5 @@ export default {
   keyboard,
   music,
   focus,
-  setTheme, // Add export here
+  setTheme,
 };

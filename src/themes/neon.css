@@ -1,20 +1,72 @@
-/* src/themes/neon.css */
 .theme-neon {
-  --app-bg-color: #1a1a1a;
-  --panel-bg-color: #0d0d0d;
-  --matrix-bg-color: #000000;
-  --primary-text-color: #00ffcc; /* Neon teal */
-  --secondary-text-color: #ffffff; /* White */
-  --panel-border-color: #00ffcc;
+  --app-bg-color: #2A004D;
+  --panel-bg-color: #3D006B;
+  --matrix-bg-color: #240040;
+  --primary-text-color: #ffffff !important;
+  --secondary-text-color: #ffffff !important;
+  --panel-border-color: #00fffc;
+  --block-glow: 0 0 25px 5px;
 
-  /* Neon Block Colors (Brighter versions) */
-  --block-color-i: #00ffff; /* Cyan */
-  --block-color-o: #ffff00; /* Yellow */
-  --block-color-t: #cc00ff; /* Magenta */
-  --block-color-s: #00ff00; /* Lime */
-  --block-color-z: #ff0000; /* Red */
-  --block-color-j: #0066ff; /* Bright Blue */
-  --block-color-l: #ff9900; /* Bright Orange */
-  --block-color-locked: #444444; /* Dark grey when locked */
-  --block-color-empty: #111111;
+  --block-color-i: #00ffff !important;
+  --block-color-o: #ffff00 !important;
+  --block-color-t: var(--panel-border-color) !important;
+  --block-color-s: #00ff00 !important;
+  --block-color-z: #ff2288 !important;
+  --block-color-j: #00aaff !important;
+  --block-color-l: #ff5500 !important;
+  
+  --block-color-locked: 
+    linear-gradient(
+      to bottom right,
+      rgba(255,255,255,0.6),
+      rgba(200,255,255,0.8)
+    ) !important;
+  --block-color-empty: rgba(90,0,120,0.7) !important;
 }
+
+/* Added control button text styling */
+.theme-neon .control-label,
+.theme-neon .button-text {
+  color: var(--primary-text-color) !important;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7) !important;
+}
+
+.matrix p b:after {
+  box-shadow: 
+    var(--block-glow) var(--block-color),
+    inset 0 0 15px rgba(255,255,255,0.3) !important;
+  filter: brightness(2) contrast(2) !important;
+  z-index: 1;
+  position: relative;
+}
+
+.display-text {
+  text-shadow: 
+    0 0 25px rgba(255,255,255,0.9),
+    0 0 15px var(--primary-text-color),
+    0 0 5px #ffffff !important;
+  color: #ffffff !important;
+}
+
+.matrix {
+  box-shadow: 
+    0 0 80px rgba(0,255,252,1),
+    inset 0 0 40px rgba(0,255,252,0.8) !important;
+  border: 5px solid var(--panel-border-color) !important;
+  background: var(--matrix-bg-color) !important;
+}
+
+.matrix p b {
+  border: 3px solid rgba(0,255,252,0.6) !important;
+  box-shadow: 
+    inset 0 0 8px rgba(0,0,0,0.5),
+    0 0 8px var(--block-color) !important;
+}
+
+.block-I { --block-color: var(--block-color-i) !important; }
+.block-O { --block-color: var(--block-color-o) !important; }
+.block-T { --block-color: var(--block-color-t) !important; }
+.block-S { --block-color: var(--block-color-s) !important; }
+.block-Z { --block-color: var(--block-color-z) !important; }
+.block-J { --block-color: var(--block-color-j) !important; }
+.block-L { --block-color: var(--block-color-l) !important; }

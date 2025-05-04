@@ -22,9 +22,7 @@ import Keyboard from '../components/keyboard';
 import Guide from '../components/guide';
 import ThemeSelector from '../components/ThemeSelector';
 
-import { transform, i18n, lan } from '../unit/const';
-// import { visibilityChangeEvent, isFocus } from '../unit/'; // Removed unused imports
-// import states from '../control/states'; // Removed unused import
+import { i18n, lan } from '../unit/const';
 
 class App extends React.Component {
   render() {
@@ -36,9 +34,9 @@ class App extends React.Component {
       let scale;
       let css = {};
       if (ratio < 1.5) {
-        scale = h / 960;
+        scale = (h / 960) * 1.2;  // 20% zoom increase
       } else {
-        scale = w / 640;
+        scale = (w / 640) * 1.2;  // 20% zoom increase
         filling = (h - (960 * scale)) / scale / 3;
         css = {
           paddingTop: Math.floor(filling) + 42,
@@ -46,8 +44,7 @@ class App extends React.Component {
           marginTop: Math.floor(-480 - (filling * 1.5)),
         };
       }
-      // css[transform] = `scale(${scale})`; // Keep scale transform commented out
-      return css; // Return the calculated CSS for padding/margin/centering
+      return css;
     })();
 
     const theme = this.props.theme;
